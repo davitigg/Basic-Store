@@ -1,0 +1,29 @@
+:host {
+  font-family: BPG Arial;
+}
+a {
+  font-size: 18px;
+  color: #767676;
+  text-decoration: none;
+  transition: color 0.2s linear;
+}
+a:hover {
+  color: #313131;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  outline: 0;
+  margin-top: 10px;
+  background-color: #3c76cc;
+  width: 150px;
+  height: 50px;
+  font-size: 19px;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid #3c76cc;
+  transition: background 0.2s linear;
+}
+button:hover {
+  background: #4f83d1;
+}

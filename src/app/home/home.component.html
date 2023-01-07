@@ -1,0 +1,13 @@
+<h1>Home Page</h1>
+
+<br />
+<h2 *ngIf="isUserAuthenticated()" style="color: blue">YOU ARE LOGGED IN</h2>
+<br />
+
+<a routerLink="/weather">Display weather info (only for authorized users)</a>
+
+<br />
+<br />
+
+<button *ngIf="!isUserAuthenticated()" routerLink="/login">Login</button>
+<button *ngIf="isUserAuthenticated()" (click)="logOut()">Log out</button>
