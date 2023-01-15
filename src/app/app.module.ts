@@ -10,6 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './guards/auth-guard.guard';
 import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { HeaderComponent } from './header/header.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -21,6 +24,9 @@ export function tokenGetter() {
     HomeComponent,
     LoginComponent,
     WeatherForecastComponent,
+    RegisterComponent,
+    ProfileEditComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

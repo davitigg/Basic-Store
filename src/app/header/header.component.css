@@ -1,0 +1,14 @@
+div {
+  background-color: #2d7ed0;
+  width: 100vw;
+  height: 70px;
+  display: flex;
+}
+a {
+  font-size: 24px;
+  text-decoration: none;
+  user-select: none;
+  color: white;
+  text-align: center;
+  margin: auto;
+}

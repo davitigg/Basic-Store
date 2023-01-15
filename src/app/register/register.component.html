@@ -1,0 +1,57 @@
+<form [formGroup]="form" (ngSubmit)="register(form)">
+  <input
+    [ngStyle]="getInputStyle('username')"
+    [formControlName]="'username'"
+    type="text"
+    placeholder="მომხმარებელი"
+    id="username"
+    maxlength="50"
+    autofocus
+  />
+  <abbr title="მომხმარებელი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს">🛈</abbr>
+  <input
+    [ngStyle]="getInputStyle('password')"
+    [formControlName]="'password'"
+    type="password"
+    placeholder="პაროლი"
+    id="password"
+    maxlength="50"
+  />
+  <abbr title="პაროლი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს">🛈</abbr>
+  <input
+    [ngStyle]="getInputStyle('fname')"
+    [formControlName]="'fname'"
+    type="text"
+    name="fname"
+    placeholder="სახელი"
+    id="fname"
+    maxlength="50"
+  />
+  <input
+    [ngStyle]="getInputStyle('lname')"
+    [formControlName]="'lname'"
+    type="text"
+    name="lname"
+    placeholder="გვარი"
+    id="lname"
+    maxlength="50"
+  />
+  <input
+    [ngStyle]="getInputStyle('email')"
+    [formControlName]="'email'"
+    type="email"
+    placeholder="ელექტრონული ფოსტა"
+    id="email"
+    maxlength="50"
+  />
+  <button type="submit" class="btn-login">რეგისტრაცია</button>
+</form>
+<div *ngIf="form.invalid && isSubmitted" style="margin-top: 10px; color: red">
+  გთხოვთ შეამოწმოთ წითლად მონიშნული ველები
+</div>
+<div *ngIf="invalidRegister" style="margin-top: 10px; color: red">
+  {{ invalidRegisterMessage }}
+</div>
+<div style="padding-top: 30px">
+  <a routerLink="/login" style="font-weight: bold">ავტორიზაცია</a>
+</div>

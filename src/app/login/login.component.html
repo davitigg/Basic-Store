@@ -1,42 +1,31 @@
-  <form [formGroup]="form" (ngSubmit)="login(form)">
-    <input
-      [formControlName]="'username'"
-      type="text"
-      placeholder="მომხმარებელი ან საიდენტიფიკაციო კოდი"
-      id="username"
-      maxlength="60"
-    />
-    <div
-      *ngIf="
-        (form.get('username')?.hasError('required') ||
-          form.get('username')?.hasError('whitespace')) &&
-        isSubmitted
-      "
-      style="margin-top: 10px; color: red"
-    >
-      გთხოვთ შეავსოთ ველი
-    </div>
-    <input
-      [formControlName]="'password'"
-      type="password"
-      placeholder="პაროლი"
-      id="password"
-      maxlength="50"
-    />
-    <div
-      *ngIf="form.get('password')?.hasError('required') && isSubmitted"
-      style="margin-top: 10px; color: red"
-    >
-      გთხოვთ შეავსოთ ველი
-    </div>
-    <button type="submit" class="btn-login">ავტორიზაცია</button>
-  </form>
-  <div *ngIf="invalidLogin" style="margin-top: 10px; color: red">
-    გთხოვთ შეამოწმოთ მომხმარებელი და პაროლი.
-  </div>
-  <!-- <div style="padding-top: 30px">
-    <a href="" style="font-weight: bold">რეგისტრაცია</a>
-  </div>
-  <div style="padding-top: 10px">
+<form [formGroup]="form" (ngSubmit)="login(form)">
+  <input
+    [ngStyle]="getInputStyle('username')"
+    [formControlName]="'username'"
+    type="text"
+    placeholder="მომხმარებელი"
+    id="username"
+    maxlength="50"
+  />
+  <input
+    [ngStyle]="getInputStyle('password')"
+    [formControlName]="'password'"
+    type="password"
+    placeholder="პაროლი"
+    id="password"
+    maxlength="50"
+  />
+  <button type="submit" class="btn-login">ავტორიზაცია</button>
+</form>
+<div *ngIf="form.invalid && isSubmitted" style="margin-top: 10px; color: red">
+  გთხოვთ შეავსოთ წითლად მონიშნული ველები
+</div>
+<div *ngIf="invalidLogin" style="margin-top: 10px; color: red">
+  გთხოვთ შეამოწმოთ მომხმარებელი და პაროლი
+</div>
+<div style="padding-top: 30px">
+  <a routerLink="/register" style="font-weight: bold">რეგისტრაცია</a>
+</div>
+<!-- <div style="padding-top: 10px">
     <a href="">მომხმარებლის / პაროლის აღდგენა</a>
   </div> -->

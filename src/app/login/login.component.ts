@@ -4,15 +4,11 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticatedResponse } from '../_interfaces/authenticated-response';
 import { LoginModel } from '../_interfaces/login-model';
+import { CustomValidatorService } from '../_services/custom-validator.service';
 
 @Component({
   selector: 'app-login',
@@ -28,22 +24,19 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private customValidator: CustomValidatorService
   ) {
     this.form = this.fb.group({
-      username: ['', [Validators.required, this.validatorWhiteSpaces]],
+      username: [
+        '',
+        [Validators.required, customValidator.validatorNoWhiteSpaces],
+      ],
       password: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {}
-
-  validatorWhiteSpaces(fc: FormControl) {
-    const value = fc.value as string;
-    const isWhitespace = value.trim().length === 0;
-    const isValid = !isWhitespace;
-    return isValid ? null : { whitespace: true };
-  }
 
   login(form: FormGroup) {
     this.isSubmitted = true;
@@ -52,7 +45,7 @@ export class LoginComponent implements OnInit {
       username: this.form.get('username')?.value,
       password: this.form.get('password')?.value,
     };
-    
+
     if (form.valid) {
       this.http
         .post<AuthenticatedResponse>(
@@ -79,5 +72,14 @@ export class LoginComponent implements OnInit {
 
   logOut() {
     localStorage.removeItem('jwt');
+  }
+
+  getInputStyle(s: string) {
+    var dict: any = {};
+
+    if (this.form.get(s)?.errors && this.isSubmitted) {
+      dict['border-color'] = 'red';
+    }
+    return dict;
   }
 }

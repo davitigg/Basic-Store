@@ -1,13 +1,7 @@
-<h1>Home Page</h1>
-
+<h2 *ngIf="isUserAuthenticated()" style="color: blue">YOU ARE LOGGED IN!</h2>
 <br />
-<h2 *ngIf="isUserAuthenticated()" style="color: blue">YOU ARE LOGGED IN</h2>
+<button routerLink="/profile">პროფილის რედაქტირება</button>
 <br />
-
-<a routerLink="/weather">Display weather info (only for authorized users)</a>
-
+<button (click)="deleteUser()">ანგარიშის წაშლა</button>
 <br />
-<br />
-
-<button *ngIf="!isUserAuthenticated()" routerLink="/login">Login</button>
-<button *ngIf="isUserAuthenticated()" (click)="logOut()">Log out</button>
+<button (click)="logOut()">გამოსვლა</button>
