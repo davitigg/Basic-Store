@@ -5,8 +5,8 @@ import { OnlyLoggedOffUsersGuard } from './guards/only-logged-off-users.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
-import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -20,14 +20,10 @@ const routes: Routes = [
     component: RegisterComponent,
     canActivate: [OnlyLoggedOffUsersGuard],
   },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   {
-    path: 'profile',
+    path: 'profile-edit',
     component: ProfileEditComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'weather',
-    component: WeatherForecastComponent,
     canActivate: [AuthGuard],
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },

@@ -1,13 +1,12 @@
 <form [formGroup]="form" (ngSubmit)="update(form)">
-  <div class="field-name">მომხმარებელი</div>
+  <div class="field-name">ელექტრონული ფოსტა</div>
   <input
-    [ngStyle]="getInputStyle('username')"
-    [formControlName]="'username'"
-    type="text"
-    id="username"
+    [ngStyle]="getInputStyle('email')"
+    [formControlName]="'email'"
+    type="email"
+    id="email"
     maxlength="50"
   />
-  <abbr title="მომხმარებელი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს">🛈</abbr>
   <div class="field-name">პაროლი</div>
   <input
     [ngStyle]="getInputStyle('password')"
@@ -34,14 +33,6 @@
     type="text"
     name="lname"
     id="lname"
-    maxlength="50"
-  />
-  <div class="field-name">ელექტრონული ფოსტა</div>
-  <input
-    [ngStyle]="getInputStyle('email')"
-    [formControlName]="'email'"
-    type="email"
-    id="email"
     maxlength="50"
   />
   <button type="submit" class="btn-login">შენახვა</button>

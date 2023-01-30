@@ -1,31 +1,26 @@
-<form [formGroup]="form" (ngSubmit)="login(form)">
-  <input
-    [ngStyle]="getInputStyle('username')"
-    [formControlName]="'username'"
-    type="text"
-    placeholder="მომხმარებელი"
-    id="username"
-    maxlength="50"
-  />
-  <input
-    [ngStyle]="getInputStyle('password')"
-    [formControlName]="'password'"
-    type="password"
-    placeholder="პაროლი"
-    id="password"
-    maxlength="50"
-  />
-  <button type="submit" class="btn-login">ავტორიზაცია</button>
-</form>
-<div *ngIf="form.invalid && isSubmitted" style="margin-top: 10px; color: red">
-  გთხოვთ შეავსოთ წითლად მონიშნული ველები
+<div class="login">
+  <div class="login-logo">
+    <p>ავტორიზაცია</p>
+    <div id="outer-circle">
+      <div id="inner-circle">
+        <img src="assets\login-icon.svg" />
+      </div>
+    </div>
+  </div>
+  <div class="login-fields">
+    <form [formGroup]="form" (ngSubmit)="login(form)">
+      <p>შეიყვანეთ თქვენი მონაცემები</p>
+      თქვენი ელ-ფოსტა
+      <input [formControlName]="'email'" type="email" maxlength="50" />
+      <img id="email-icon" src="assets\email-icon.svg" />
+      პაროლი
+      <input [formControlName]="'password'" type="password" maxlength="50" />
+      <img id="password-icon" src="assets\password-icon.svg" />
+
+      <div class="submit-panel">
+        <button type="submit" class="btn-login">შესვლა</button>
+        <a>დაგავიწყდათ პაროლი ?</a>
+      </div>
+    </form>
+  </div>
 </div>
-<div *ngIf="invalidLogin" style="margin-top: 10px; color: red">
-  გთხოვთ შეამოწმოთ მომხმარებელი და პაროლი
-</div>
-<div style="padding-top: 30px">
-  <a routerLink="/register" style="font-weight: bold">რეგისტრაცია</a>
-</div>
-<!-- <div style="padding-top: 10px">
-    <a href="">მომხმარებლის / პაროლის აღდგენა</a>
-  </div> -->

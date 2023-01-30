@@ -1,14 +1,25 @@
-div {
-  background-color: #2d7ed0;
-  width: 100vw;
-  height: 70px;
+:host {
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  background: #ffffff;
+  box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.07);
   display: flex;
+  z-index: 1;
 }
-a {
-  font-size: 24px;
-  text-decoration: none;
-  user-select: none;
-  color: white;
-  text-align: center;
-  margin: auto;
+
+.btn {
+  background-color: DodgerBlue; 
+  border: none; 
+  color: white; 
+  padding: 12px 16px;
+  font-size: 24px; 
+  cursor: pointer;
+  visibility: hidden;
+}
+
+:host:hover > .btn{
+  visibility: visible;
 }

@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { UserModel } from './user-model';
+import { UserModel } from '../_interfaces/user-model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenService {
   user: UserModel | undefined;
-
-  constructor() {}
 
   getDecodedToken() {
     var token = localStorage.getItem('jwt');

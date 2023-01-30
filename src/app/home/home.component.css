@@ -1,29 +1,215 @@
 :host {
   font-family: BPG Arial;
+  letter-spacing: 0.02em;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
 }
-a {
-  font-size: 18px;
-  color: #767676;
-  text-decoration: none;
-  transition: color 0.2s linear;
+ul {
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-a:hover {
-  color: #313131;
+li {
+  box-sizing: border-box;
 }
-button {
-  font-family: inherit;
+.items li {
+  width: 819px;
+}
+.header {
+  display: flex;
+  font-weight: 700;
+  height: 100px;
+  box-sizing: border-box;
+}
+.items .header {
+  font-size: 14px;
+  align-items: flex-end;
+  padding-bottom: 14px;
+}
+.header .item-name {
+  border: 0;
+}
+.header .item-quantity {
+  border: 0;
+}
+.header .item-price {
+  background: none;
+}
+.item {
+  min-height: 50px;
+  border: 1px solid #e7f2fd;
+  border-radius: 10px;
+  display: flex;
+  margin-bottom: 19px;
+  background: #ffffff;
+}
+.item-name {
+  width: 562px;
+  border-right: 1px solid #f3f9ff;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+.item-quantity {
+  width: 123px;
+  border-left: 1px solid #f3f9ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.item-price {
+  width: 65px;
+  background: #f3f9ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-btn {
+  width: 69px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.cart-btn img {
   cursor: pointer;
-  outline: 0;
-  margin-top: 10px;
-  background-color: #3c76cc;
-  width: 300px;
-  height: 50px;
-  font-size: 19px;
-  color: white;
-  border-radius: 5px;
-  border: 1px solid #3c76cc;
-  transition: background 0.2s linear;
 }
-button:hover {
-  background: #4f83d1;
+.cart-btn img:hover ~ .popup {
+  transition: all 0.1s ease 0.5s;
+  visibility: visible;
+}
+.popup {
+  position: absolute;
+  left: 70px;
+  width: 187px;
+  height: 50px;
+  background: #ffffff;
+  box-shadow: 0px 5px 20px #bcd6f4;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1b385b;
+  visibility: hidden;
+  z-index: 2;
+}
+.popup p {
+  color: #ed5861;
+}
+
+.cart-items {
+  min-height: calc(100vh - 80px);
+  margin-left: 15px;
+  background: #ffffff;
+}
+.cart-items .header {
+  width: 486px;
+  font-size: 20px;
+  color: #0d66d0;
+  border-bottom: 2px solid #e7f2fd;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 17px;
+  margin-bottom: 48px;
+}
+.cart-items .header img {
+  width: 22px;
+  height: 20px;
+}
+.cart-item {
+  width: 420px;
+  min-height: 94px;
+  border: 1px solid #cfe0f6;
+  border-radius: 10px;
+  margin-bottom: 18.5px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #1b385b;
+  position: relative;
+}
+.cart-item-header {
+  display: flex;
+  height: 45px;
+  background: #f3f9ff;
+  border-radius: inherit;
+  font-weight: 700;
+}
+.cart-item-name {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: 10px;
+  overflow: hidden;
+}
+.cart-item-quantity {
+  min-width: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quantity-amount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 17px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ed5861;
+}
+.quantity-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  background: #bcd6f4;
+  border: 0;
+  cursor: pointer;
+}
+#quantity-decrement {
+  border-radius: 9px 0 0 9px;
+}
+#quantity-increment {
+  border-radius: 0 9px 9px 0;
+}
+.cart-item-price {
+  min-width: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-item-sum {
+  min-width: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 17px;
+  color: #0d66d0;
+}
+.cart-item-content {
+  display: flex;
+  height: 49px;
+}
+.cart-item-close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: 405px;
+  top: -14px;
+  background: #ffffff;
+  border: 1px solid #f6f6f6;
+  border-radius: 50%;
+  cursor: pointer;
 }

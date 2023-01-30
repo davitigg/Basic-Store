@@ -1,53 +1,49 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { AuthenticatedResponse } from '../_interfaces/authenticated-response';
+import { Component, OnInit } from '@angular/core';
+import { ItemsService } from '../_services/items.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
-  constructor(
-    private jwtHelper: JwtHelperService,
-    private router: Router,
-    private http: HttpClient
-  ) {}
+export class HomeComponent implements OnInit {
+  items$: any;
+  cartItems$: any;
 
-  ngOnInit(): void {}
+  constructor(private itemsService: ItemsService) {}
 
-  isUserAuthenticated(): boolean {
-    const token = localStorage.getItem('jwt');
-
-    if (token && !this.jwtHelper.isTokenExpired(token)) {
-      return true;
-    }
-
-    return false;
+  ngOnInit(): void {
+    this.getItems();
+    this.getCartItems();
   }
 
-  logOut() {
-    localStorage.removeItem('jwt');
-    this.router.navigate(['login']);
+  getItems() {
+    this.itemsService.getItems().subscribe((response) => {
+      this.items$ = response;
+    });
   }
 
-  deleteUser() {
-    this.http
-      .delete('https://localhost:5001/api/auth/delete', {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      })
-      .subscribe({
-        next: () => {
-          localStorage.removeItem('jwt');
-          alert('თქვენი მომხმარებელი წაიშალა!');
-          this.router.navigate(['login']);
-        },
-      });
+  getCartItems() {
+    this.itemsService.getCartItems().subscribe((response) => {
+      this.cartItems$ = response;
+    });
+  }
+
+  updateCart(itemId: number, step: number) {
+    this.itemsService.updateCart(itemId, step).subscribe({
+      next: () => {
+        this.getItems();
+        this.getCartItems();
+      },
+    });
+  }
+
+  deleteCartItem(id: number) {
+    this.itemsService.deleteCartItem(id).subscribe({
+      next: () => {
+        this.getItems();
+        this.getCartItems();
+      },
+    });
   }
 }

@@ -6,7 +6,7 @@ import {
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticatedResponse } from '../_interfaces/authenticated-response';
-import { TokenService } from '../_interfaces/token.service';
+import { TokenService } from '../_services/token.service';
 import { UserModel } from '../_interfaces/user-model';
 import { CustomValidatorService } from '../_services/custom-validator.service';
 
@@ -31,20 +31,18 @@ export class ProfileEditComponent {
   ) {
     // gets user info
     this.user = {
-      username: this.decodedToken.username,
+      email: this.decodedToken.email,
       password: '',
       fname: this.decodedToken.firstname,
       lname: this.decodedToken.lastname,
-      email: this.decodedToken.email,
     };
 
     this.form = this.fb.group({
-      username: [
-        this.user?.username,
+      email: [
+        this.user?.email,
         [
           Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(50),
+          Validators.email,
           customValidator.validatorNoWhiteSpaces,
         ],
       ],
@@ -64,14 +62,6 @@ export class ProfileEditComponent {
         this.user?.lname,
         [Validators.required, customValidator.validatorNoWhiteSpaces],
       ],
-      email: [
-        this.user?.email,
-        [
-          Validators.required,
-          Validators.email,
-          customValidator.validatorNoWhiteSpaces,
-        ],
-      ],
     });
   }
 
@@ -79,11 +69,10 @@ export class ProfileEditComponent {
     this.isSubmitted = true;
     if (form.valid && form.dirty) {
       var updatedUser: UserModel = {
-        username: this.form.get('username')?.value,
+        email: this.form.get('email')?.value,
         password: this.form.get('password')?.value,
         fname: this.form.get('fname')?.value,
         lname: this.form.get('lname')?.value,
-        email: this.form.get('email')?.value,
       };
       this.http
         .put<AuthenticatedResponse>(
@@ -115,11 +104,10 @@ export class ProfileEditComponent {
   }
 
   resetForm() {
-    this.form.get('username')!.setValue(this.user.username);
+    this.form.get('email')!.setValue(this.user.email);
     this.form.get('password')!.setValue('');
     this.form.get('fname')!.setValue(this.user.fname);
     this.form.get('lname')!.setValue(this.user.lname);
-    this.form.get('email')!.setValue(this.user.email);
 
     this.form.markAsPristine();
   }
