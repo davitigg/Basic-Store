@@ -1,3 +1,5 @@
+import { UserModel } from "./user-model";
+
 export interface ItemModel {
   id:number
   name: string;
@@ -7,10 +9,9 @@ export interface ItemModel {
 
 export interface CartItemModel {
   id: number;
-  itemId: number;
-  name: string;
+  user: UserModel
+  item: ItemModel;
   quantity: number;
-  price: number;
   sumPrice: number;
 }
 

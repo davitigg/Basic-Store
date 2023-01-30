@@ -26,7 +26,7 @@
   <li *ngFor="let cartItem of cartItems$" class="cart-item">
     <button
       class="cart-item-close-btn"
-      (click)="deleteCartItem(cartItem.itemId)"
+      (click)="deleteCartItem(cartItem.item.id)"
     >
       <img src="assets\cart-item-close-btn.svg" />
     </button>
@@ -37,12 +37,12 @@
       <div class="cart-item-sum">ჯამი</div>
     </div>
     <div class="cart-item-content">
-      <div class="cart-item-name">{{ cartItem.name }}</div>
+      <div class="cart-item-name">{{ cartItem.item.name }}</div>
       <div class="cart-item-quantity">
         <button
           class="quantity-btn"
           id="quantity-decrement"
-          (click)="updateCart(cartItem.itemId, -1)"
+          (click)="updateCart(cartItem.item.id, -1)"
         >
           &minus;
         </button>
@@ -50,12 +50,12 @@
         <button
           class="quantity-btn"
           id="quantity-increment"
-          (click)="updateCart(cartItem.itemId, 1)"
+          (click)="updateCart(cartItem.item.id, 1)"
         >
           +
         </button>
       </div>
-      <div class="cart-item-price">{{ cartItem.price }}₾</div>
+      <div class="cart-item-price">{{ cartItem.item.price }}₾</div>
       <div class="cart-item-sum">{{ cartItem.sumPrice }}₾</div>
     </div>
   </li>
