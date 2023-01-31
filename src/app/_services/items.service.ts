@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import {
   CartItemModel,
   CartUpdateModel,
-  ItemModel
+  ItemModel,
+  ItemResponse,
 } from '../_interfaces/item-model';
 
 @Injectable({
@@ -15,43 +16,32 @@ export class ItemsService implements OnInit {
 
   ngOnInit(): void {}
 
-  getItems(): Observable<ItemModel[]> {
-    return this.http.get<ItemModel[]>('https://localhost:5001/api/items/', {
+  getAll(): Observable<ItemResponse> {
+    return this.http.get<ItemResponse>('https://localhost:5001/api/items/', {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     });
   }
 
-  getCartItems(): Observable<CartItemModel[]> {
-    return this.http.get<CartItemModel[]>(
-      'https://localhost:5001/api/items/cart',
-      {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      }
-    );
-  }
-
-  updateCart(itemId: number, step: number) {
+  updateCart(itemId: number, step: number): Observable<ItemResponse> {
     var cartUpdateModel: CartUpdateModel = {
       itemId: itemId,
       step: step,
     };
 
-    return this.http.post(
+    return this.http.post<ItemResponse>(
       'https://localhost:5001/api/items/cart',
       cartUpdateModel,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-        responseType: 'text' as 'json',
       }
     );
   }
 
-  deleteCartItem(id: number) {
-    return this.http.delete(
-      'https://localhost:5001/api/items/cart/delete/' + id,
+  deleteCartItem(id: number): Observable<ItemResponse> {
+    return this.http.delete<ItemResponse>(
+      `https://localhost:5001/api/items/cart/delete/${id}`,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-        responseType: 'text' as 'json',
       }
     );
   }

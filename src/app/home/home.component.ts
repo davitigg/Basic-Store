@@ -13,36 +13,30 @@ export class HomeComponent implements OnInit {
   constructor(private itemsService: ItemsService) {}
 
   ngOnInit(): void {
-    this.getItems();
-    this.getCartItems();
+    this.getAll();
   }
 
-  getItems() {
-    this.itemsService.getItems().subscribe((response) => {
-      this.items$ = response;
-    });
-  }
-
-  getCartItems() {
-    this.itemsService.getCartItems().subscribe((response) => {
-      this.cartItems$ = response;
+  getAll() {
+    this.itemsService.getAll().subscribe((response) => {
+      this.items$ = response.items;
+      this.cartItems$ = response.cart;
     });
   }
 
   updateCart(itemId: number, step: number) {
     this.itemsService.updateCart(itemId, step).subscribe({
-      next: () => {
-        this.getItems();
-        this.getCartItems();
+      next: (response) => {
+        this.items$ = response.items;
+        this.cartItems$ = response.cart;
       },
     });
   }
 
   deleteCartItem(id: number) {
     this.itemsService.deleteCartItem(id).subscribe({
-      next: () => {
-        this.getItems();
-        this.getCartItems();
+      next: (response) => {
+        this.items$ = response.items;
+        this.cartItems$ = response.cart;
       },
     });
   }

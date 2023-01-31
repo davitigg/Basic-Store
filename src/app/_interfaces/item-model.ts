@@ -1,7 +1,12 @@
-import { UserModel } from "./user-model";
+import { UserModel } from './user-model';
+
+export interface ItemResponse {
+  items: ItemModel;
+  cart: CartItemModel;
+}
 
 export interface ItemModel {
-  id:number
+  id: number;
   name: string;
   quantity: number;
   price: number;
@@ -9,7 +14,7 @@ export interface ItemModel {
 
 export interface CartItemModel {
   id: number;
-  user: UserModel
+  user: UserModel;
   item: ItemModel;
   quantity: number;
   sumPrice: number;
