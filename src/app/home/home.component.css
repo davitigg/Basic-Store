@@ -17,7 +17,9 @@ li {
   box-sizing: border-box;
 }
 .items li {
-  width: 819px;
+  width: calc(100vw - 500px);
+  max-width: 819px;
+  min-width: 500px;
 }
 .header {
   display: flex;
@@ -55,21 +57,21 @@ li {
   padding-left: 20px;
 }
 .item-quantity {
-  width: 123px;
+  min-width: 123px;
   border-left: 1px solid #f3f9ff;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .item-price {
-  width: 65px;
+  min-width: 65px;
   background: #f3f9ff;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .cart-btn {
-  width: 69px;
+  min-width: 69px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -212,4 +214,13 @@ li {
   border: 1px solid #f6f6f6;
   border-radius: 50%;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 1000px) {
+  :host {
+    flex-wrap: wrap;
+  }
+  .cart-items {
+    margin-left: 0;
+  }
 }
