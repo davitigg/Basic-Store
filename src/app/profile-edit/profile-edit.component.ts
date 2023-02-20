@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticatedResponse } from '../_interfaces/authenticated-response';
 import { TokenService } from '../_services/token.service';
-import { UserModel } from '../_interfaces/user-model';
+import { UserModel, UserRoles } from '../_interfaces/user-model';
 import { CustomValidatorService } from '../_services/custom-validator.service';
 
 @Component({
@@ -33,8 +33,9 @@ export class ProfileEditComponent {
     this.user = {
       email: this.decodedToken.email,
       password: '',
-      fname: this.decodedToken.firstname,
-      lname: this.decodedToken.lastname,
+      fName: this.decodedToken.firstname,
+      lName: this.decodedToken.lastname,
+      role: UserRoles.Seller, // შესაცვლელია
     };
 
     this.form = this.fb.group({
@@ -54,12 +55,12 @@ export class ProfileEditComponent {
           customValidator.validatorNoWhiteSpaces,
         ],
       ],
-      fname: [
-        this.user?.fname,
+      fName: [
+        this.user?.fName,
         [Validators.required, customValidator.validatorNoWhiteSpaces],
       ],
-      lname: [
-        this.user?.lname,
+      lName: [
+        this.user?.lName,
         [Validators.required, customValidator.validatorNoWhiteSpaces],
       ],
     });
@@ -71,8 +72,9 @@ export class ProfileEditComponent {
       var updatedUser: UserModel = {
         email: this.form.get('email')?.value,
         password: this.form.get('password')?.value,
-        fname: this.form.get('fname')?.value,
-        lname: this.form.get('lname')?.value,
+        fName: this.form.get('fName')?.value,
+        lName: this.form.get('lName')?.value,
+        role: UserRoles.Seller, // შესაცვლელია
       };
       this.http
         .put<AuthenticatedResponse>(
@@ -106,8 +108,8 @@ export class ProfileEditComponent {
   resetForm() {
     this.form.get('email')!.setValue(this.user.email);
     this.form.get('password')!.setValue('');
-    this.form.get('fname')!.setValue(this.user.fname);
-    this.form.get('lname')!.setValue(this.user.lname);
+    this.form.get('fName')!.setValue(this.user.fName);
+    this.form.get('lName')!.setValue(this.user.lName);
 
     this.form.markAsPristine();
   }

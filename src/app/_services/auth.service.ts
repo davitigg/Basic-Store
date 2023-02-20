@@ -1,14 +1,14 @@
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpHeaders
+  HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticatedResponse } from '../_interfaces/authenticated-response';
 import { LoginModel } from '../_interfaces/login-model';
-import { UserModel } from '../_interfaces/user-model';
+import { UserModel, UserRoles } from '../_interfaces/user-model';
 
 @Injectable({
   providedIn: 'root',
@@ -51,8 +51,9 @@ export class AuthService {
     var credentials: UserModel = {
       email: form.get('email')?.value,
       password: form.get('password')?.value,
-      fname: form.get('fname')?.value,
-      lname: form.get('lname')?.value,
+      fName: form.get('fName')?.value,
+      lName: form.get('lName')?.value,
+      role: UserRoles.Seller, // შესაცვლელია
     };
 
     if (form.valid) {
@@ -98,4 +99,6 @@ export class AuthService {
         },
       });
   }
+
+  
 }
