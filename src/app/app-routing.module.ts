@@ -3,9 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { BuyComponent } from './buy/buy.component';
 import { LoginComponent } from './login/login.component';
-import { ProfileEditComponent } from './profile-edit/profile-edit.component';
-import { ProfileComponent } from './profile/profile.component';
-import { RegisterComponent } from './register/register.component';
 import { SellComponent } from './sell/sell.component';
 import { AdminGuard } from './_guards/admin.guard';
 import { AuthGuard } from './_guards/auth-guard.guard';
@@ -20,20 +17,9 @@ const routes: Routes = [
     canActivate: [OnlyLoggedOffUsersGuard],
   },
   {
-    path: 'register',
-    component: RegisterComponent,
-    canActivate: [OnlyLoggedOffUsersGuard],
-  },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  {
-    path: 'profile-edit',
-    component: ProfileEditComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'sell',
-    component: SellComponent,
-    canActivate: [AuthGuard, SellerGuard],
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'buy',
@@ -41,10 +27,11 @@ const routes: Routes = [
     canActivate: [AuthGuard, BuyerGuard],
   },
   {
-    path: 'admin',
-    component: AdminComponent,
-    canActivate: [AuthGuard, AdminGuard],
+    path: 'sell',
+    component: SellComponent,
+    canActivate: [AuthGuard, SellerGuard],
   },
+ 
   { path: '', redirectTo: '/admin', pathMatch: 'full' },
 ];
 

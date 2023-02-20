@@ -19,8 +19,10 @@
 
       <div class="submit-panel">
         <button type="submit" class="btn-login">შესვლა</button>
-        <a>დაგავიწყდათ პაროლი ?</a>
+        <a (click)="registerUser()">რეგისტრაცია</a>
       </div>
     </form>
   </div>
 </div>
+
+<app-user [(userDialog)]="userDialogToggle"></app-user>

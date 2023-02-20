@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../_services/auth.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +10,11 @@ import { AuthService } from '../_services/auth.service';
 export class LoginComponent {
   form: FormGroup;
 
+  userDialogToggle!: boolean;
+
   constructor(
     private readonly fb: FormBuilder,
-    private authService: AuthService
+    private userService: UserService
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -21,6 +23,10 @@ export class LoginComponent {
   }
 
   login(form: FormGroup) {
-    this.authService.login(form);
+    this.userService.login(form);
+  }
+
+  registerUser() {
+    this.userDialogToggle = true;
   }
 }

@@ -1,15 +1,17 @@
 <p-toolbar styleClass="mb-4 gap-2 h-full w-screen">
   <ng-template pTemplate="left"> </ng-template>
   <ng-template pTemplate="right">
-    <!-- <button
+    <button
+      *ngIf="userLoggedIn()"
+      (click)="editUser()"
       pButton
       pRipple
       type="button"
       icon="pi pi-user"
       class="p-button-rounded p-button-info p-button-lg h-3rem w-3rem mr-2"
-    ></button> -->
+    ></button>
     <button
-    *ngIf="userLoggedIn()"
+      *ngIf="userLoggedIn()"
       (click)="logOut()"
       pButton
       pRipple
@@ -19,3 +21,5 @@
     ></button>
   </ng-template>
 </p-toolbar>
+
+<app-user *ngIf="userDialogToggle" [(userDialog)]="userDialogToggle"></app-user>

@@ -113,7 +113,7 @@ export class SellComponent implements OnInit {
     if (
       this.product.name!.trim() &&
       this.product.price &&
-      this.product.quantity
+      this.product.quantity! >= 0
     ) {
       if (this.product.id) {
         let product = this.product;

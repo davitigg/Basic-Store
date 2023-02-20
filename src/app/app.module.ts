@@ -7,9 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
-import { ProfileEditComponent } from './profile-edit/profile-edit.component';
-import { ProfileComponent } from './profile/profile.component';
-import { RegisterComponent } from './register/register.component';
 import { SellComponent } from './sell/sell.component';
 import { AuthGuard } from './_guards/auth-guard.guard';
 
@@ -39,6 +36,7 @@ import { UsersComponent } from './admin/users/users.component';
 import { BuyComponent } from './buy/buy.component';
 import { CartComponent } from './buy/cart/cart.component';
 import { ProductsComponent } from './buy/products/products.component';
+import { UserComponent } from './user/user.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt');
@@ -48,16 +46,14 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
-    ProfileEditComponent,
     HeaderComponent,
-    ProfileComponent,
     SellComponent,
     BuyComponent,
     CartComponent,
     ProductsComponent,
     AdminComponent,
     UsersComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

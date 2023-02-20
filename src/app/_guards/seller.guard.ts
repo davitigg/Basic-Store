@@ -25,7 +25,7 @@ export class SellerGuard implements CanActivate {
       }
     }
 
-    this.router.navigate(['home']);
+    this.router.navigate(['buy']);
     return false;
   }
 }

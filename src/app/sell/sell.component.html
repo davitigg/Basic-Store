@@ -206,7 +206,7 @@
           id="quantity"
           [(ngModel)]="product.quantity"
         ></p-inputNumber>
-        <small class="p-error" *ngIf="submitted && !product.quantity"
+        <small class="p-error" *ngIf="submitted && product.quantity! < 0"
           >Quantity is required.</small
         >
       </div>

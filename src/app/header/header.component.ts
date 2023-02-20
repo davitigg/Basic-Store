@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { AuthService } from '../_services/auth.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -8,20 +7,21 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  userDialogToggle!: boolean;
+
   constructor(
-    private authService: AuthService,
-    private jwtHelper: JwtHelperService
+    private userService: UserService
   ) {}
 
   userLoggedIn() {
-    const token = localStorage.getItem('jwt');
-
-    if (token && !this.jwtHelper.isTokenExpired(token)) {
-      return true;
-    }
-    return false;
+    return this.userService.userLoggedIn();
   }
+
   logOut() {
-    this.authService.logOut();
+    this.userService.logOut();
+  }
+
+  editUser() {
+    this.userDialogToggle = true;
   }
 }
