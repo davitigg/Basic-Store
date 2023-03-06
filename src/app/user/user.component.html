@@ -74,6 +74,7 @@
 
   <ng-template pTemplate="footer">
     <button
+      *ngIf="user!.id"
       pButton
       pRipple
       label="Delete Account"
