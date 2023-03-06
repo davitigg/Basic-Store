@@ -1,6 +1,16 @@
-# Authorization
+# BasicStore
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
+
+## Test users
+Login:
+		 admin@test
+		 buyer1@test
+		 buyer2@test
+		 seller1@test
+		 seller2@test
+
+Password:123456
 
 ## Development server
 
